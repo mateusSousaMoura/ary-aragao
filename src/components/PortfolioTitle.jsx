@@ -36,7 +36,7 @@ const PortfolioTitle = () => {
     display: 'inline-block',
   }
 
-
+// teste deploy
   return (
     <section id="portfolio-title" style={containerStyle} ref={ref}>
       {/* Título com animação de baixo para cima */}
