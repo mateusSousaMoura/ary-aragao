@@ -85,12 +85,12 @@ const Brands = () => {
   }
 
   const brandsData = [
-    { id: 1, name: 'Brand 1', image: '/brand.png' },
-    { id: 2, name: 'Brand 2', image: '/brand.png' },
-    { id: 3, name: 'Brand 3', image: '/brand.png' },
-    { id: 4, name: 'Brand 4', image: '/brand.png' },
-    { id: 5, name: 'Brand 5', image: '/brand.png' },
-    { id: 6, name: 'Brand 6', image: '/brand.png' },
+    { id: 1, name: 'Brand 1', image: './brand.png' },
+    { id: 2, name: 'Brand 2', image: './brand.png' },
+    { id: 3, name: 'Brand 3', image: './brand.png' },
+    { id: 4, name: 'Brand 4', image: './brand.png' },
+    { id: 5, name: 'Brand 5', image: './brand.png' },
+    { id: 6, name: 'Brand 6', image: './brand.png' },
   ]
 
   return (

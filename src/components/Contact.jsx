@@ -82,7 +82,7 @@ const Contact = () => {
         style={{ ...contentStyle, scale, opacity }}
       >
         <img 
-          src="/y.png" 
+          src="./y.png" 
           alt="Y Logo" 
           style={{
             width: '200px',
