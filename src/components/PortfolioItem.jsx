@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { siteConfig } from '../config/site.config'
 import { useState } from 'react'
 import PropTypes from 'prop-types'
@@ -15,84 +15,36 @@ const PortfolioItem = ({
   rotation = 0,
 }) => {
   const [isHovered, setIsHovered] = useState(false)
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [10, -10])
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-10, 10])
-
-  const itemStyle = {
-    background: `
-      linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)
-    `,
-    backdropFilter: 'blur(40px)',
-    borderRadius: '20px',
-    overflow: 'hidden',
-    cursor: 'pointer',
+  const containerStyle = {
     position: 'relative',
     gridColumn: gridArea.column,
     gridRow: gridArea.row,
-    border: '1px solid rgba(255, 255, 255, 0.05)',
-    boxShadow: `
-      0 4px 20px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.05)
-    `,
+    height: '100%',
   }
 
-  const imageContainerStyle = {
-    width: '100%',
-    height: '100%',
-    minHeight: '350px',
-    position: 'relative',
-    overflow: 'hidden',
+  const contentStyle = {
+    margin: '20px',
+    height: 'calc(100% - 40px)',
+    display: 'flex',
+    flexDirection: 'column',
+    cursor: 'pointer',
   }
 
   const imageStyle = {
     width: '100%',
-    height: '100%',
+    flex: '1',
+    minHeight: '250px',
     objectFit: 'cover',
-    transition: 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
-  }
-
-  const overlayStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: `
-      linear-gradient(45deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        rgba(255, 255, 255, 0.05) 50%,
-        transparent 100%
-      )
-    `,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    opacity: 0,
-    transition: 'opacity 0.4s ease',
-    backdropFilter: 'blur(20px)',
   }
 
   const infoStyle = {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    background: 'transparent',
     padding: '28px',
-    background: `
-      linear-gradient(180deg, 
-        transparent 0%, 
-        rgba(0, 0, 0, 0.8) 40%,
-        rgba(0, 0, 0, 0.95) 100%
-      )
-    `,
-    backdropFilter: 'blur(10px)',
-    transform: isHovered ? 'translateY(0)' : 'translateY(20px)',
-    opacity: isHovered ? 1 : 0.95,
-    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    minHeight: '120px',
   }
 
   const tagsContainerStyle = {
@@ -138,170 +90,10 @@ const PortfolioItem = ({
     transition: 'gap 0.3s ease',
   }
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = (e.clientX - rect.left) / rect.width - 0.5
-    const y = (e.clientY - rect.top) / rect.height - 0.5
-    mouseX.set(x)
-    mouseY.set(y)
-  }
-
-  const handleMouseLeave = () => {
-    mouseX.set(0)
-    mouseY.set(0)
-  }
 
   return (
-    <motion.div
-      style={itemStyle}
-      initial={{ 
-        opacity: 0, 
-        y: 100,
-        rotate: rotation + (index % 2 === 0 ? -5 : 5),
-        scale: 0.8,
-      }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0,
-        rotate: rotation,
-        scale: 1,
-      }}
-      transition={{ 
-        duration: 0.8, 
-        delay: index * 0.15,
-        ease: [0.6, 0.05, 0.01, 0.9],
-      }}
-      viewport={{ once: true, amount: 0.2 }}
-      whileHover={{ 
-        scale: 1.05,
-        rotate: 0,
-        zIndex: 10,
-        transition: { 
-          duration: 0.4,
-          ease: [0.34, 1.56, 0.64, 1],
-        }
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseOut={() => setIsHovered(false)}
-    >
-      <motion.div 
-        style={{ 
-          ...imageContainerStyle,
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-        }}
-      >
-        <motion.img
-          src={image}
-          alt={title}
-          style={imageStyle}
-          whileHover={{ scale: 1.1 }}
-        />
-        
-        {/* Overlay com efeito de hover */}
-        <div 
-          className="overlay" 
-          style={{
-            ...overlayStyle,
-            opacity: isHovered ? 1 : 0,
-          }}
-        >
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ 
-              y: isHovered ? 0 : 20, 
-              opacity: isHovered ? 1 : 0,
-            }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            <span style={{ 
-              color: siteConfig.colors.white, 
-              fontSize: '20px', 
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '2px',
-            }}>
-              View Project
-            </span>
-          </motion.div>
-          
-          {/* Ícone animado */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ 
-              scale: isHovered ? 1 : 0,
-              rotate: isHovered ? 0 : 180,
-            }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            style={{
-              marginTop: '16px',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              border: '2px solid white',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '24px',
-            }}
-          >
-            →
-          </motion.div>
-        </div>
-      </motion.div>
-      
-      {/* Info com glassmorphism */}
-      <div style={infoStyle}>
-        <motion.div 
-          style={tagsContainerStyle}
-          initial={{ x: -20, opacity: 0 }}
-          animate={{ 
-            x: isHovered ? 0 : -20, 
-            opacity: isHovered ? 1 : 0.8,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          {tags.map((tag, tagIdx) => (
-            <motion.span 
-              key={`${id}-tag-${tag}-${tagIdx}`} 
-              style={tagStyle}
-              whileHover={{ 
-                scale: 1.05,
-                backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                borderColor: 'rgba(255, 255, 255, 0.2)',
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              {tag}
-            </motion.span>
-          ))}
-        </motion.div>
-        
-        <motion.h3 
-          style={titleStyle}
-          initial={{ y: 10, opacity: 0 }}
-          animate={{ 
-            y: isHovered ? 0 : 10, 
-            opacity: 1,
-          }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          {title}
-        </motion.h3>
-        
-        <motion.a 
-          href={link} 
-          style={linkStyle}
-          whileHover={{ gap: '16px' }}
-        >
-          View Project →
-        </motion.a>
-      </div>
-
-      {/* Borda animada sutil no hover */}
+    <div style={containerStyle}>
+      {/* Borda externa com animação de dentro para fora */}
       <motion.div
         style={{
           position: 'absolute',
@@ -309,21 +101,67 @@ const PortfolioItem = ({
           left: 0,
           right: 0,
           bottom: 0,
-          borderRadius: '20px',
-          border: '1px solid transparent',
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) border-box',
-          WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude',
-          opacity: 0,
+          background: `
+            linear-gradient(to right, white 0%, white 30px, transparent 30px, transparent calc(100% - 30px), white calc(100% - 30px), white 100%) top left / 100% 1px no-repeat,
+            linear-gradient(to right, white 0%, white 30px, transparent 30px, transparent calc(100% - 30px), white calc(100% - 30px), white 100%) bottom left / 100% 1px no-repeat,
+            linear-gradient(to bottom, white 0%, white 30px, transparent 30px, transparent calc(100% - 30px), white calc(100% - 30px), white 100%) top left / 1px 100% no-repeat,
+            linear-gradient(to bottom, white 0%, white 30px, transparent 30px, transparent calc(100% - 30px), white calc(100% - 30px), white 100%) top right / 1px 100% no-repeat
+          `,
           pointerEvents: 'none',
         }}
+        initial={{
+          scale: 0.6,
+          opacity: 0,
+        }}
         animate={{
+          scale: isHovered ? 1 : 0.7,
           opacity: isHovered ? 1 : 0,
         }}
-        transition={{ duration: 0.3 }}
+        transition={{ 
+          duration: 0.8,
+          ease: [0.25, 0.46, 0.45, 0.94]
+        }}
       />
-    </motion.div>
+      
+      {/* Conteúdo com margin */}
+      <div 
+        style={contentStyle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Seção da imagem */}
+        <img
+          src={image}
+          alt={title}
+          style={imageStyle}
+        />
+        
+        {/* Seção de informações */}
+        <div style={infoStyle}>
+          <div style={tagsContainerStyle}>
+            {tags.map((tag, tagIdx) => (
+              <span 
+                key={`${id}-tag-${tag}-${tagIdx}`} 
+                style={tagStyle}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          
+          <h3 style={titleStyle}>
+            {title}
+          </h3>
+          
+          <a 
+            href={link} 
+            style={linkStyle}
+          >
+            View Project →
+          </a>
+        </div>
+      </div>
+    </div>
   )
 }
 

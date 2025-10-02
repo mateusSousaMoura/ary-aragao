@@ -28,10 +28,10 @@ const PortfolioTitle = () => {
 
   const titleStyle = {
     color: siteConfig.colors.deepOrange,
-    fontSize: '60px',
-    fontWeight: 300,
+    fontSize: '140px',
+    fontWeight: 270,
     lineHeight: 1.2,
-    letterSpacing: '0.05em',
+    letterSpacing: '-0.04em',
     position: 'relative',
     display: 'inline-block',
   }
@@ -51,7 +51,7 @@ const PortfolioTitle = () => {
         }}
         viewport={{ once: true, amount: 0.3 }}
       >
-        Some works...
+        Some Works...
       </motion.h2>
     </section>
   )
