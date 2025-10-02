@@ -56,7 +56,7 @@ const Navbar = () => {
       <div style={logoStyle}>{siteConfig.personal.name}</div>
       <div style={menuStyle}>
         <a href="#about" style={linkStyle}>Sobre</a>
-        <a href="#portfolio" style={linkStyle}>Portfólio</a>
+        <a href="#portfolio-title" style={linkStyle}>Portfólio</a>
         <a href="#contact" style={linkStyle}>Contato</a>
       </div>
     </motion.nav>

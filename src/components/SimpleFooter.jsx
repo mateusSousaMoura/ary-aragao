@@ -46,7 +46,7 @@ const SimpleFooter = () => {
           Sobre
         </motion.a>
         <motion.a
-          href="#portfolio"
+          href="#portfolio-title"
           style={linkStyle}
           whileHover={{
             color: siteConfig.colors.deepOrange,

@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { siteConfig } from '../config/site.config'
+// Importar imagens diretamente
+import brandPng from '/brand.png'
 
 const Brands = () => {
   const ref = useRef(null)
@@ -85,12 +87,12 @@ const Brands = () => {
   }
 
   const brandsData = [
-    { id: 1, name: 'Brand 1', image: './brand.png' },
-    { id: 2, name: 'Brand 2', image: './brand.png' },
-    { id: 3, name: 'Brand 3', image: './brand.png' },
-    { id: 4, name: 'Brand 4', image: './brand.png' },
-    { id: 5, name: 'Brand 5', image: './brand.png' },
-    { id: 6, name: 'Brand 6', image: './brand.png' },
+    { id: 1, name: 'Brand 1', image: brandPng },
+    { id: 2, name: 'Brand 2', image: brandPng },
+    { id: 3, name: 'Brand 3', image: brandPng },
+    { id: 4, name: 'Brand 4', image: brandPng },
+    { id: 5, name: 'Brand 5', image: brandPng },
+    { id: 6, name: 'Brand 6', image: brandPng },
   ]
 
   return (

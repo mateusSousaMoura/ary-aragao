@@ -1,9 +1,17 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import PortfolioItem from './PortfolioItem'
+import ProjectModal from './ProjectModal'
+// Importar imagens diretamente
+import hulkGif from '/hulk.gif'
+import yPng from '/y.png'
+import brandPng from '/brand.png'
 
 const PortfolioProjects = () => {
   const ref = useRef(null)
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start']
@@ -11,6 +19,16 @@ const PortfolioProjects = () => {
 
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100])
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
+  }
 
   const containerStyle = {
     minHeight: '100vh',
@@ -65,7 +83,7 @@ const PortfolioProjects = () => {
       id: 1,
       title: "Channel Showcase - Coluna do Fla",
       tags: ["MOTION", "COMMERCIAL", "ART DIRECTION"],
-      image: "./hulk.gif",
+      image: hulkGif,
       link: "#",
       gridArea: { column: '4 / 9', row: '1 / 3' },
       rotation: 0,
@@ -76,7 +94,7 @@ const PortfolioProjects = () => {
       id: 2,
       title: "Sports Package - Atlético Piauiense 2024", 
       tags: ["MOTION", "BRANDING", "DESIGN"],
-      image: "./hulk.gif",
+      image: yPng,
       link: "#",
       gridArea: { column: '2 / 6', row: '4 / 6' },
       rotation: 0,
@@ -86,7 +104,7 @@ const PortfolioProjects = () => {
       id: 3,
       title: "Motion Promo - BDS",
       tags: ["MOTION", "ANIMATION", "CREATIVE"],
-      image: "./hulk.gif",
+      image: brandPng,
       link: "#",
       gridArea: { column: '7 / 11', row: '4 / 6' },
       rotation: 0,
@@ -114,10 +132,18 @@ const PortfolioProjects = () => {
               index={index}
               gridArea={project.gridArea}
               rotation={project.rotation}
+              onProjectClick={handleProjectClick}
             />
           ))}
         </div>
       </motion.div>
+
+      {/* Modal de projeto */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   )
 }

@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { siteConfig } from '../config/site.config'
+// Importar imagens diretamente
+import yPng from '/y.png'
 import { BsInstagram } from "react-icons/bs";
 import { PiLinkedinLogo, PiFacebookLogo } from "react-icons/pi";
 import { HiXMark } from 'react-icons/hi2'
@@ -82,7 +84,7 @@ const Contact = () => {
         style={{ ...contentStyle, scale, opacity }}
       >
         <img 
-          src="./y.png" 
+          src={yPng} 
           alt="Y Logo" 
           style={{
             width: '200px',
