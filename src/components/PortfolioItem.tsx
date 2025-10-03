@@ -1,18 +1,17 @@
 import { motion } from 'framer-motion'
 import { siteConfig } from '../config/site.config'
 import { useState } from 'react'
-import PropTypes from 'prop-types'
+import { PortfolioItemProps } from '../types'
 
-// eslint-disable-next-line react/prop-types
-const PortfolioItem = ({ 
+const PortfolioItem: React.FC<PortfolioItemProps> = ({ 
   id, 
   title, 
   tags = [], 
   image, 
   link = "#", 
-  index = 0,
   gridArea = { column: 'span 4', row: 'span 2' },
   rotation = 0,
+  onProjectClick,
 }) => {
   const [isHovered, setIsHovered] = useState(false)
 
@@ -128,6 +127,16 @@ const PortfolioItem = ({
         style={contentStyle}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => onProjectClick?.({
+          id,
+          title,
+          tags,
+          image,
+          link,
+          gridArea,
+          rotation,
+          type: 'featured'
+        })}
       >
         {/* Seção da imagem */}
         <img
@@ -163,20 +172,6 @@ const PortfolioItem = ({
       </div>
     </div>
   )
-}
-
-PortfolioItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string),
-  image: PropTypes.string.isRequired,
-  link: PropTypes.string,
-  index: PropTypes.number,
-  gridArea: PropTypes.shape({
-    column: PropTypes.string,
-    row: PropTypes.string,
-  }),
-  rotation: PropTypes.number,
 }
 
 export default PortfolioItem

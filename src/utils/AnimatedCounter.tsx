@@ -1,12 +1,27 @@
 import { useEffect, useRef } from "react"
 import { useInView, useMotionValue, useSpring } from "framer-motion"
 
+interface AnimatedCounterProps {
+    value?: number;
+    decimal?: boolean;
+    decimalValue?: number;
+    direction?: "up" | "down";
+    stiffness?: number;
+    damping?: number;
+    prefix?: boolean;
+    prefixText?: string;
+    suffix?: boolean;
+    suffixText?: string;
+    color?: string;
+    fontStyle?: React.CSSProperties;
+    margin?: string;
+}
+
 /**
  * Componente de counter animado baseado no Framer Motion
  * Anima números de 0 até o valor final com spring physics
  */
-// eslint-disable-next-line react/prop-types
-const AnimatedCounter = ({
+const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
     value = 100,
     decimal = false,
     decimalValue = 100,
@@ -22,7 +37,7 @@ const AnimatedCounter = ({
     margin = "-100px"
 }) => {
     const initialValue = 0
-    const ref = useRef(null)
+    const ref = useRef<HTMLSpanElement>(null)
     const updatedDecimalValue = decimal === true ? decimalValue : value
     const motionValue = useMotionValue(
         direction === "down" ? updatedDecimalValue : initialValue

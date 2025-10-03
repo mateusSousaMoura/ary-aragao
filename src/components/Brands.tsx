@@ -36,12 +36,6 @@ const Brands = () => {
     fontSize: '26px',
   }
 
-  const gridStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gridTemplateRows: 'repeat(2, 1fr)',
-    gap: '48px',
-  }
 
   // Estilos responsivos usando CSS customizado
   const responsiveGridStyle = `

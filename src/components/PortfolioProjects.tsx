@@ -2,14 +2,15 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
 import PortfolioItem from './PortfolioItem'
 import ProjectModal from './ProjectModal'
+import { Project, PortfolioProjectsProps } from '../types'
 // Importar imagens diretamente
 import hulkGif from '/hulk.gif'
 import yPng from '/y.png'
 import brandPng from '/brand.png'
 
-const PortfolioProjects = () => {
-  const ref = useRef(null)
-  const [selectedProject, setSelectedProject] = useState(null)
+const PortfolioProjects: React.FC<PortfolioProjectsProps> = () => {
+  const ref = useRef<HTMLElement>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   
   const { scrollYProgress } = useScroll({
@@ -20,7 +21,7 @@ const PortfolioProjects = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100])
 
-  const handleProjectClick = (project) => {
+  const handleProjectClick = (project: Project) => {
     setSelectedProject(project)
     setIsModalOpen(true)
   }
@@ -77,7 +78,7 @@ const PortfolioProjects = () => {
     minHeight: '70vh',
   }
 
-  const portfolioData = [
+  const portfolioData: Project[] = [
     // Projeto principal centralizado
     {
       id: 1,

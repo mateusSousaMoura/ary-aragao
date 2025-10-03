@@ -1,6 +1,16 @@
 import { motion } from 'framer-motion'
 
-const Marquee = ({ 
+interface MarqueeProps {
+  text: string;
+  speed?: number;
+  fontSize?: string;
+  color?: string;
+  opacity?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+const Marquee: React.FC<MarqueeProps> = ({ 
   text, 
   speed = 20, 
   fontSize = '240px', 
@@ -30,7 +40,7 @@ const Marquee = ({
     x: [0, '-50%'],
     transition: {
       repeat: Infinity,
-      repeatType: "loop",
+      repeatType: "loop" as const,
       duration: speed,
       ease: "linear",
     },

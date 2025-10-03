@@ -1,5 +1,180 @@
 // Configuração central do site
-export const siteConfig = {
+interface SiteConfig {
+  personal: {
+    name: string;
+    fullName: string;
+    title: string;
+    email: string;
+    profileImage: string;
+  };
+  socialLinks: {
+    instagram: string;
+    facebook: string;
+    twitter: string;
+    linkedin: string;
+  };
+  colors: {
+    creamyWhite: string;
+    deepOrange: string;
+    white: string;
+    black: string;
+    gray: string;
+    mattBlack: string;
+    background: {
+      primary: string;
+      secondary: string;
+      contact: string;
+    };
+  };
+  typography: {
+    fonts: {
+      primary: string;
+      secondary: string;
+    };
+    headings: {
+      h1: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: string;
+        letterSpacing: string;
+        color: string;
+        fontFamily: string;
+      };
+      h1Small: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      h2: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      h2Small: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      h3: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      h3Small: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      h4: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+    };
+    body: {
+      body1: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        fontFamily: string;
+      };
+      body2: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        fontFamily: string;
+      };
+    };
+    paragraphs: {
+      paragraphL: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      paragraphS: {
+        fontSize: string;
+        fontWeight: number;
+        lineHeight: number;
+        color: string;
+        fontFamily: string;
+      };
+    };
+    navigation: {
+      navMenu: {
+        fontSize: string;
+        fontWeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      footerNav: {
+        fontSize: string;
+        fontWeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      footerNavDark: {
+        fontSize: string;
+        fontWeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      footerText: {
+        fontSize: string;
+        fontWeight: number;
+        color: string;
+        fontFamily: string;
+      };
+      footerTextXXL: {
+        fontSize: string;
+        fontWeight: number;
+        fontStyle: string;
+        color: string;
+        fontFamily: string;
+        minWidth: string;
+      };
+    };
+  };
+  content: {
+    hero: {
+      title: string;
+      subtitle: string;
+    };
+    about: {
+      title: string;
+      description: string;
+    };
+    portfolio: {
+      title: string;
+      projects: Array<{
+        id: number;
+        title: string;
+        description: string;
+        image: string;
+        videoUrl: string;
+      }>;
+    };
+    contact: {
+      title: string;
+      subtitle: string;
+    };
+  };
+}
+
+export const siteConfig: SiteConfig = {
   // Informações pessoais
   personal: {
     name: "Ary Aragão",

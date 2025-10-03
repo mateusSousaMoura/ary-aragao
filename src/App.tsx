@@ -8,7 +8,7 @@ import Contact from './components/Contact'
 import WorkingFooter from './components/WorkingFooter'
 import CameraFrame from './components/CameraFrame'
 
-function App() {
+const App: React.FC = () => {
   return (
     <div style={{ backgroundColor: siteConfig.colors.background.primary }}>
       <CameraFrame />
