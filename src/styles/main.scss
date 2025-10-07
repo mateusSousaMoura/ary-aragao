@@ -1,0 +1,105 @@
+// ========================================
+// MAIN SASS FILE - PORTFOLIO ARY ARAGÃO
+// ========================================
+
+// ========================================
+// 1. BASE & UTILITIES
+// ========================================
+@use 'base/variables' as *;
+@use 'utils/mixins' as *;
+@use 'base/base';
+
+// ========================================
+// 2. COMPONENTS
+// ========================================
+@use 'components/navbar';
+@use 'components/hero';
+@use 'components/about';
+@use 'components/brands';
+@use 'components/portfolio';
+@use 'components/contact';
+@use 'components/footer';
+@use 'components/marquee';
+@use 'components/camera-frame';
+@use 'components/modal';
+
+// ========================================
+// 3. ANIMATIONS & KEYFRAMES
+// ========================================
+
+// Animate on Scroll
+.animate-on-scroll {
+  @include scroll-animation;
+}
+
+// Fade In Up Animation
+.fade-in-up {
+  @include fade-in-up;
+  
+  &--delay-1 { animation-delay: 0.1s; }
+  &--delay-2 { animation-delay: 0.2s; }
+  &--delay-3 { animation-delay: 0.3s; }
+  &--delay-4 { animation-delay: 0.4s; }
+  &--delay-5 { animation-delay: 0.5s; }
+}
+
+// Hover animations
+.hover-scale {
+  @include hover-effect;
+}
+
+.hover-scale-sm {
+  @include hover-effect(1.02);
+}
+
+.hover-scale-lg {
+  @include hover-effect(1.1);
+}
+
+// ========================================
+// 4. RESPONSIVE UTILITIES
+// ========================================
+
+.mobile-only {
+  @include tablet-up {
+    display: none !important;
+  }
+}
+
+.tablet-up {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+.desktop-only {
+  @include mobile {
+    display: none !important;
+  }
+  
+  @include tablet {
+    display: none !important;
+  }
+}
+
+// ========================================
+// 5. ACCESSIBILITY
+// ========================================
+
+// Focus styles
+*:focus {
+  outline: 2px solid $color-deep-orange;
+  outline-offset: 2px;
+}
+
+// Reduce motion for accessibility
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

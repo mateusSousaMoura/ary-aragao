@@ -1,0 +1,354 @@
+@use 'sass:color';
+@use '../base/variables' as *;
+
+// ========================================
+// TIPOGRAFIA MIXINS
+// ========================================
+
+// Heading Principal (H1)
+@mixin heading-primary($size: $font-size-h1) {
+  font-family: $font-primary;
+  font-size: $size;
+  font-weight: $font-weight-light;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-creamy-white;
+}
+
+// Heading Secundário (H2)
+@mixin heading-secondary($size: $font-size-h2) {
+  font-family: $font-primary;
+  font-size: $size;
+  font-weight: $font-weight-semibold;
+  line-height: 1.1;
+  color: $color-creamy-white;
+}
+
+// Heading Terciário (H3)
+@mixin heading-tertiary($size: $font-size-h3) {
+  font-family: $font-primary;
+  font-size: $size;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-normal;
+  color: $color-creamy-white;
+}
+
+// Heading Quaternário (H4)
+@mixin heading-quaternary($size: $font-size-h4) {
+  font-family: $font-primary;
+  font-size: $size;
+  font-weight: $font-weight-semibold;
+  line-height: 1.3;
+  color: $color-creamy-white;
+}
+
+// Body Text
+@mixin body-text($size: $font-size-body2) {
+  font-family: $font-primary;
+  font-size: $size;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-relaxed;
+}
+
+// Paragraph Large
+@mixin paragraph-large {
+  font-family: $font-secondary;
+  font-size: $font-size-paragraph-l;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-loose;
+  color: $color-white;
+}
+
+// Paragraph Small
+@mixin paragraph-small {
+  font-family: $font-secondary;
+  font-size: $font-size-paragraph-s;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-loose;
+  color: $color-gray;
+}
+
+// Navigation Text
+@mixin nav-text {
+  font-family: $font-primary;
+  font-size: $font-size-nav;
+  font-weight: $font-weight-medium;
+  color: $color-white;
+}
+
+// Footer Navigation
+@mixin footer-nav {
+  font-family: $font-primary;
+  font-size: $font-size-footer-nav;
+  font-weight: $font-weight-medium;
+  color: $color-creamy-white;
+}
+
+// Footer Navigation Dark
+@mixin footer-nav-dark {
+  font-family: $font-primary;
+  font-size: $font-size-footer-nav;
+  font-weight: $font-weight-medium;
+  color: $color-matt-black;
+}
+
+// Marquee Text
+@mixin marquee-text {
+  font-family: $font-primary;
+  font-size: $font-size-footer-xxl;
+  font-weight: $font-weight-bold;
+  font-style: italic;
+  color: $color-white;
+}
+
+// ========================================
+// LAYOUT MIXINS
+// ========================================
+
+// Flexbox Center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox Column
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Flexbox Between
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Container padrão
+@mixin container {
+  max-width: $container-max-width;
+  width: 100%;
+  margin: 0 auto;
+}
+
+// Seção padrão
+@mixin section {
+  min-height: 100vh;
+  padding: $padding-section;
+  background-color: $bg-primary;
+}
+
+// Full viewport
+@mixin full-viewport {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// Absolute center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// ========================================
+// VISUAL EFFECTS MIXINS
+// ========================================
+
+// Glassmorphism
+@mixin glassmorphism($blur: $backdrop-filter-medium, $opacity: 0.1) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: $blur;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Hover Effect
+@mixin hover-effect($scale: 1.05, $transition: $transition-scale) {
+  transition: transform $transition;
+  
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+// Button Style
+@mixin button-style($bg: $color-white, $color: $color-black) {
+  background-color: $bg;
+  color: $color;
+  padding: 12px 24px;
+  border-radius: $border-radius-xl;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: $font-weight-semibold;
+  font-size: 14px;
+  transition: all $transition-scale;
+  text-decoration: none;
+  display: inline-block;
+  
+  &:hover {
+    background-color: color.scale($bg, $lightness: -5%);
+    transform: translateY(-2px);
+  }
+}
+
+// Tag Style
+@mixin tag-style {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: $backdrop-filter-medium;
+  color: $color-creamy-white;
+  padding: 6px 14px;
+  border-radius: $border-radius-lg;
+  font-size: 11px;
+  font-weight: $font-weight-medium;
+  font-family: $font-primary;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wide;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-block;
+}
+
+// ========================================
+// ANIMATION MIXINS
+// ========================================
+
+// Fade In Up
+@mixin fade-in-up($delay: 0s) {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp $animation-duration-fast ease forwards;
+  animation-delay: $delay;
+}
+
+// Scroll Animation
+@mixin scroll-animation {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity $animation-duration-fast ease, transform $animation-duration-fast ease;
+  
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ========================================
+// BORDER MIXINS
+// ========================================
+
+// Corner Border (Camera Frame)
+@mixin corner-border($size: $corner-frame-size, $border-width: $corner-frame-border) {
+  position: absolute;
+  width: $size;
+  height: $size;
+  border: $border-width solid $color-black;
+}
+
+// Dashed Border Effect
+@mixin dashed-border($color: $color-white) {
+  background: 
+    linear-gradient(to right, $color 0%, $color 30px, transparent 30px, transparent calc(100% - 30px), $color calc(100% - 30px), $color 100%) top left / 100% 1px no-repeat,
+    linear-gradient(to right, $color 0%, $color 30px, transparent 30px, transparent calc(100% - 30px), $color calc(100% - 30px), $color 100%) bottom left / 100% 1px no-repeat,
+    linear-gradient(to bottom, $color 0%, $color 30px, transparent 30px, transparent calc(100% - 30px), $color calc(100% - 30px), $color 100%) top left / 1px 100% no-repeat,
+    linear-gradient(to bottom, $color 0%, $color 30px, transparent 30px, transparent calc(100% - 30px), $color calc(100% - 30px), $color 100%) top right / 1px 100% no-repeat;
+}
+
+// ========================================
+// RESPONSIVE MIXINS
+// ========================================
+
+// Media Query Breakpoints
+@mixin mobile {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-sm}) and (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// Mobile First Approach
+@mixin mobile-up {
+  @media (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+// ========================================
+// UTILITY MIXINS
+// ========================================
+
+// Visually Hidden
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// No Select
+@mixin no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Smooth Scroll
+@mixin smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+// Reset List
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Reset Button
+@mixin reset-button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font-family: inherit;
+}

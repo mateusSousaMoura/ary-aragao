@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef, useState } from 'react'
+import React from 'react'
 import PortfolioItem from './PortfolioItem'
 import ProjectModal from './ProjectModal'
 import { Project, PortfolioProjectsProps } from '../types'
@@ -9,9 +9,9 @@ import yPng from '/y.png'
 import brandPng from '/brand.png'
 
 const PortfolioProjects: React.FC<PortfolioProjectsProps> = () => {
-  const ref = useRef<HTMLElement>(null)
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const ref = React.useRef<HTMLElement>(null)
+  const [selectedProject, setSelectedProject] = React.useState<Project | null>(null)
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
   
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -29,53 +29,6 @@ const PortfolioProjects: React.FC<PortfolioProjectsProps> = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false)
     setSelectedProject(null)
-  }
-
-  const containerStyle = {
-    minHeight: '100vh',
-    padding: '120px 60px 120px',
-    backgroundColor: 'transparent',
-    position: 'relative',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-
-  const backgroundBlurStyle = {
-    position: 'absolute',
-    top: '-200px',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: `
-      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.01) 0%, transparent 50%),
-      linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.3) 100%)
-    `,
-    backdropFilter: 'blur(80px)',
-    zIndex: 1,
-  }
-
-  const contentStyle = {
-    position: 'relative',
-    zIndex: 3,
-    maxWidth: '1200px',
-    width: '100%',
-    margin: '0 auto',
-  }
-
-  // Layout sofisticado e minimalista
-  const sophisticatedGridStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(12, 1fr)',
-    gridTemplateRows: 'repeat(6, 1fr)',
-    gap: '80px',
-    width: '100%',
-    padding: '0 60px',
-    justifyItems: 'center',
-    alignItems: 'center',
-    minHeight: '70vh',
   }
 
   const portfolioData: Project[] = [
@@ -113,15 +66,14 @@ const PortfolioProjects: React.FC<PortfolioProjectsProps> = () => {
     }
   ]
 
-
   return (
-    <section id="portfolio-projects" style={containerStyle} ref={ref}>
+    <section id="portfolio-projects" className="portfolio-projects" ref={ref}>
       {/* Fundo com blur e gradientes */}
-      <motion.div style={{ ...backgroundBlurStyle, y: backgroundY }}></motion.div>
+      <motion.div className="portfolio-projects__background" style={{ y: backgroundY }}></motion.div>
 
-      <motion.div style={{ ...contentStyle, opacity }}>
+      <motion.div className="portfolio-projects__content" style={{ opacity }}>
         {/* Grid sofisticado */}
-        <div style={sophisticatedGridStyle}>
+        <div className="portfolio-projects__grid">
           {portfolioData.map((project, index) => (
             <PortfolioItem
               key={project.id}

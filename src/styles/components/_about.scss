@@ -1,0 +1,98 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// ABOUT COMPONENT
+// ========================================
+
+.about {
+  @include section;
+  @include flex-center;
+  
+  &__content {
+    @include container;
+  }
+  
+  &__grid {
+    &--first-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: $spacing-md;
+      margin-bottom: $spacing-md;
+    }
+    
+    &--second-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: $spacing-md;
+    }
+  }
+  
+  &__box {
+    @include glassmorphism;
+    padding: $spacing-lg;
+    border-radius: $border-radius-md;
+    @include flex-column;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  &__description {
+    @include paragraph-small;
+    margin-bottom: $spacing-sm;
+    font-weight: 450;
+    color: $color-creamy-white;
+  }
+  
+  &__separator {
+    height: 1px;
+    background-color: #666666;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &__counter {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    &-number {
+      font-size: 80px;
+      font-weight: $font-weight-semibold;
+      line-height: 1.1;
+      color: $color-creamy-white;
+      font-family: $font-primary;
+    }
+    
+    &-plus {
+      font-size: 128px;
+      font-weight: $font-weight-medium;
+      line-height: 1.1;
+      color: $color-deep-orange;
+      font-family: $font-primary;
+    }
+  }
+  
+  @include mobile {
+    &__grid {
+      &--first-row,
+      &--second-row {
+        grid-template-columns: 1fr;
+        gap: $spacing-sm;
+      }
+    }
+    
+    &__box {
+      padding: $spacing-md;
+    }
+    
+    &__counter {
+      &-number {
+        font-size: 60px;
+      }
+      
+      &-plus {
+        font-size: 80px;
+      }
+    }
+  }
+}

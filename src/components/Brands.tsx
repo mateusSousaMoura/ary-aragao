@@ -1,11 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { siteConfig } from '../config/site.config'
-// Importar imagens diretamente
+import React from 'react'
 import brandPng from '/brand.png'
 
 const Brands = () => {
-  const ref = useRef(null)
+  const ref = React.useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start']
@@ -13,72 +11,6 @@ const Brands = () => {
 
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
   const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100])
-
-  const containerStyle = {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '120px 80px',
-    backgroundColor: siteConfig.colors.background.primary,
-  }
-
-  const contentStyle = {
-    maxWidth: '1200px',
-    width: '100%',
-  }
-
-  const titleStyle = {
-    ...siteConfig.typography.headings.h2Small,
-    marginBottom: '80px',
-    textAlign: 'center',
-    fontWeight: 400,
-    fontSize: '26px',
-  }
-
-
-  // Estilos responsivos usando CSS customizado
-  const responsiveGridStyle = `
-    .brands-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 48px;
-    }
-    
-    @media (max-width: 1024px) {
-      .brands-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .brands-grid {
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        gap: 32px;
-      }
-    }
-  `
-
-  const brandItemStyle = {
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    borderRadius: '12px',
-    padding: '48px 32px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '200px',
-  }
-
-  const brandImageStyle = {
-    maxWidth: '100%',
-    maxHeight: '80px',
-    width: 'auto',
-    height: 'auto',
-    filter: 'grayscale(100%)',
-  }
 
   const brandsData = [
     { id: 1, name: 'Brand 1', image: brandPng },
@@ -90,17 +22,17 @@ const Brands = () => {
   ]
 
   return (
-    <section id="brands" style={containerStyle} ref={ref}>
-      <style>{responsiveGridStyle}</style>
+    <section id="brands" className="brands" ref={ref}>
       <motion.div
-        style={{ ...contentStyle, opacity, y }}
+        className="brands__content"
+        style={{ opacity, y }}
       >
-        <h2 style={titleStyle}>Brands I have worked with</h2>
-        <div className="brands-grid">
+        <h2 className="brands__title">Brands I have worked with</h2>
+        <div className="brands__grid">
           {brandsData.map((brand, index) => (
             <motion.div
               key={brand.id}
-              style={brandItemStyle}
+              className="brands__item"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -109,7 +41,7 @@ const Brands = () => {
               <img
                 src={brand.image}
                 alt={brand.name}
-                style={brandImageStyle}
+                className="brands__image"
               />
             </motion.div>
           ))}

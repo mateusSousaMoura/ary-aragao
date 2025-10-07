@@ -1,9 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { siteConfig } from '../config/site.config'
+import React from 'react'
 
 const PortfolioTitle = () => {
-  const ref = useRef(null)
+  const ref = React.useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start']
@@ -13,35 +12,12 @@ const PortfolioTitle = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
   const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100])
 
-  const containerStyle = {
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '0',
-    backgroundColor: siteConfig.colors.background.primary,
-    position: 'relative',
-    overflow: 'hidden',
-  }
-
-
-
-  const titleStyle = {
-    color: siteConfig.colors.deepOrange,
-    fontSize: '140px',
-    fontWeight: 270,
-    lineHeight: 1.2,
-    letterSpacing: '-0.04em',
-    position: 'relative',
-    display: 'inline-block',
-  }
-
-// teste deploy
   return (
-    <section id="portfolio-title" style={containerStyle} ref={ref}>
+    <section id="portfolio-title" className="portfolio-title" ref={ref}>
       {/* Título com animação de baixo para cima */}
       <motion.h2 
-        style={{ ...titleStyle, opacity, y }}
+        className="portfolio-title__heading"
+        style={{ opacity, y }}
         initial={{ y: 100, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ 

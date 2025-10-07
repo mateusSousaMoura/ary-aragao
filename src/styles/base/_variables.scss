@@ -1,0 +1,160 @@
+// ========================================
+// VARIÁVEIS PRINCIPAIS
+// ========================================
+
+// ========================================
+// CORES
+// ========================================
+$color-creamy-white: #FAF5EA;
+$color-deep-orange: #FF2E63;
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-gray: #BABABA;
+$color-matt-black: #1A1A1A;
+
+// Cores de fundo
+$bg-primary: #0A0A0A;
+$bg-secondary: #1A1A1A;
+$bg-contact: #FF2E63;
+
+// ========================================
+// TIPOGRAFIA
+// ========================================
+$font-primary: 'Clash Display', sans-serif;
+$font-secondary: 'Satoshi', sans-serif;
+
+// Font Weights
+$font-weight-light: 200;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Font Sizes
+$font-size-xxl: 657px;
+$font-size-xl: 240px;
+$font-size-large: 140px;
+$font-size-h1: 200px;
+$font-size-h1-small: 64px;
+$font-size-h2: 72px;
+$font-size-h2-small: 48px;
+$font-size-h3: 56px;
+$font-size-h3-small: 36px;
+$font-size-h4: 32px;
+$font-size-body1: 40px;
+$font-size-body2: 22px;
+$font-size-paragraph-l: 20px;
+$font-size-paragraph-s: 16px;
+$font-size-nav: 18px;
+$font-size-footer-nav: 16px;
+$font-size-footer-text: 14px;
+$font-size-footer-xxl: 240px;
+
+// Line Heights
+$line-height-tight: 0.8;
+$line-height-normal: 1.2;
+$line-height-relaxed: 1.4;
+$line-height-loose: 1.6;
+
+// Letter Spacing
+$letter-spacing-tight: -0.06em;
+$letter-spacing-normal: -0.04em;
+$letter-spacing-loose: -0.02em;
+$letter-spacing-wide: 0.8px;
+$letter-spacing-wider: 2px;
+
+// ========================================
+// ESPAÇAMENTOS
+// ========================================
+$spacing-xs: 8px;
+$spacing-sm: 16px;
+$spacing-md: 24px;
+$spacing-lg: 32px;
+$spacing-xl: 48px;
+$spacing-xxl: 80px;
+$spacing-xxxl: 120px;
+
+// Padding/Margin específicos
+$padding-section: 120px 80px;
+$padding-hero: 0 80px;
+$padding-contact: 89px 0px 87px 0px;
+$padding-footer: 280px 80px;
+
+// ========================================
+// BREAKPOINTS
+// ========================================
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1200px;
+$breakpoint-xl: 1440px;
+
+// ========================================
+// BORDER RADIUS
+// ========================================
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 20px;
+$border-radius-xl: 25px;
+$border-radius-circle: 50%;
+
+// ========================================
+// SHADOWS & EFFECTS
+// ========================================
+$shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+$shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.25);
+
+$backdrop-filter-light: blur(10px);
+$backdrop-filter-medium: blur(20px);
+$backdrop-filter-heavy: blur(80px);
+
+// ========================================
+// TRANSIÇÕES
+// ========================================
+$transition-fast: 0.15s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+$transition-scale: 0.2s ease;
+
+// ========================================
+// Z-INDEX
+// ========================================
+$z-index-background: 1;
+$z-index-content: 3;
+$z-index-overlay: 10;
+$z-index-navbar: 1000;
+$z-index-modal: 9999;
+
+// ========================================
+// GRID & LAYOUT
+// ========================================
+$container-max-width: 1200px;
+$grid-gap: 24px;
+$grid-gap-large: 48px;
+$grid-gap-xlarge: 80px;
+
+// ========================================
+// OPACIDADE
+// ========================================
+$opacity-low: 0.1;
+$opacity-medium: 0.3;
+$opacity-high: 0.8;
+$opacity-overlay: 0.9;
+
+// ========================================
+// VARIÁVEIS DE CONTEÚDO
+// ========================================
+$corner-frame-size: 40px;
+$corner-frame-border: 2px;
+$marquee-spacing: 200px;
+
+// ========================================
+// ANIMAÇÕES
+// ========================================
+$animation-duration-fast: 0.8s;
+$animation-duration-normal: 1s;
+$animation-duration-slow: 1.5s;
+$animation-delay-short: 0.1s;
+$animation-delay-medium: 0.3s;
+$animation-delay-long: 1s;

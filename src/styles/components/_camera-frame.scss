@@ -1,0 +1,44 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// CAMERA FRAME COMPONENT
+// ========================================
+
+.camera-frame {
+  @include full-viewport;
+  pointer-events: none;
+  z-index: $z-index-navbar;
+  
+  &__corner {
+    @include corner-border;
+    
+    &--top-left {
+      top: 20px;
+      left: 20px;
+      border-right: none;
+      border-bottom: none;
+    }
+    
+    &--top-right {
+      top: 20px;
+      right: 20px;
+      border-left: none;
+      border-bottom: none;
+    }
+    
+    &--bottom-left {
+      bottom: 20px;
+      left: 20px;
+      border-right: none;
+      border-top: none;
+    }
+    
+    &--bottom-right {
+      bottom: 20px;
+      right: 20px;
+      border-left: none;
+      border-top: none;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// BRANDS COMPONENT
+// ========================================
+
+.brands {
+  @include section;
+  @include flex-center;
+  
+  &__content {
+    @include container;
+  }
+  
+  &__title {
+    @include heading-secondary($font-size-h2-small);
+    margin-bottom: $spacing-xxl;
+    text-align: center;
+    font-weight: $font-weight-regular;
+    font-size: 26px;
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: $spacing-xl;
+    
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+    
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: $spacing-lg;
+    }
+  }
+  
+  &__item {
+    @include glassmorphism($backdrop-filter-light, 0.05);
+    border-radius: $border-radius-md;
+    padding: $spacing-xl $spacing-lg;
+    @include flex-center;
+    min-height: 200px;
+    transition: transform $transition-normal;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  &__image {
+    max-width: 100%;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    filter: grayscale(100%);
+    transition: filter $transition-normal;
+    
+    .brands__item:hover & {
+      filter: grayscale(0%);
+    }
+  }
+}

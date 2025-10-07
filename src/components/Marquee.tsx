@@ -19,23 +19,6 @@ const Marquee: React.FC<MarqueeProps> = ({
   className = '',
   style = {}
 }) => {
-  const containerStyle = {
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    ...style
-  }
-
-  const textStyle = {
-    fontSize,
-    color,
-    opacity,
-    display: 'inline-block',
-    whiteSpace: 'nowrap',
-    fontFamily: "'Clash Display', sans-serif",
-    fontWeight: 700,
-    fontStyle: 'italic',
-  }
-
   const animation = {
     x: [0, '-50%'],
     transition: {
@@ -46,23 +29,27 @@ const Marquee: React.FC<MarqueeProps> = ({
     },
   }
 
+  const inlineStyle = {
+    fontSize,
+    color,
+    opacity,
+    ...style
+  }
+
   return (
-    <div style={containerStyle} className={className}>
+    <div className={`marquee ${className}`} style={style}>
       <motion.div
-        style={{
-          ...textStyle,
-          display: 'inline-block',
-          whiteSpace: 'nowrap',
-        }}
+        className="marquee__content"
+        style={inlineStyle}
         animate={animation}
       >
-        <span style={{ marginRight: '200px' }}>
+        <span className="marquee__text">
           {text}
         </span>
-        <span style={{ marginRight: '200px' }}>
+        <span className="marquee__text">
           {text}
         </span>
-        <span style={{ marginRight: '200px' }}>
+        <span className="marquee__text">
           {text}
         </span>
       </motion.div>

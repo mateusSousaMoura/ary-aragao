@@ -1,0 +1,105 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// CONTACT COMPONENT
+// ========================================
+
+.contact {
+  flex: 1;
+  width: 100%;
+  height: min-content;
+  @include flex-column;
+  justify-content: center;
+  align-items: center;
+  padding: $padding-contact;
+  background-color: $bg-contact;
+  overflow: visible;
+  z-index: $z-index-background;
+  align-content: center;
+  flex-wrap: nowrap;
+  gap: 38px;
+  position: relative;
+  border-radius: 0;
+  
+  &__content {
+    text-align: center;
+    width: 90%;
+    @include flex-column;
+    align-items: center;
+    gap: 38px;
+    padding: 30px;
+    position: relative;
+    @include dashed-border($color-black);
+  }
+  
+  &__logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 0;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  &__email {
+    @include heading-tertiary($font-size-h3-small);
+    color: $color-matt-black;
+    margin-bottom: 0;
+    display: block;
+    transition: transform $transition-normal;
+    text-decoration: none;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  &__social {
+    display: flex;
+    gap: 38px;
+    justify-content: center;
+    margin-top: 0;
+    
+    &-link {
+      @include footer-nav-dark;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color $transition-fast;
+      cursor: pointer;
+      text-decoration: none;
+      
+      &:hover {
+        color: $color-creamy-white;
+        transform: scale(0.95);
+      }
+    }
+  }
+  
+  @include mobile {
+    padding: 60px 0;
+    
+    &__content {
+      width: 95%;
+      padding: 20px;
+      gap: 24px;
+    }
+    
+    &__logo {
+      width: 150px;
+    }
+    
+    &__email {
+      font-size: 24px;
+    }
+    
+    &__social {
+      gap: 20px;
+      flex-wrap: wrap;
+      
+      &-link {
+        font-size: 14px;
+      }
+    }
+  }
+}

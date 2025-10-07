@@ -1,0 +1,52 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// NAVBAR COMPONENT
+// ========================================
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 80px;
+  @include flex-between;
+  z-index: $z-index-navbar;
+  transition: all $transition-normal;
+  
+  &--scrolled {
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: $backdrop-filter-light;
+  }
+  
+  &__logo {
+    @include body-text;
+    color: $color-creamy-white;
+    font-weight: $font-weight-bold;
+  }
+  
+  &__menu {
+    display: flex;
+    gap: $spacing-xl;
+    align-items: center;
+  }
+  
+  &__link {
+    @include nav-text;
+    cursor: pointer;
+    transition: color $transition-normal;
+    
+    &:hover {
+      color: $color-deep-orange;
+    }
+  }
+  
+  @include mobile {
+    padding: 16px 40px;
+    
+    &__menu {
+      gap: $spacing-md;
+    }
+  }
+}

@@ -1,0 +1,99 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// HERO COMPONENT
+// ========================================
+
+.hero {
+  min-height: 100vh;
+  @include flex-column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: $padding-hero;
+  position: relative;
+  background-color: $bg-primary;
+  
+  &__title {
+    @include heading-primary(200px);
+    margin-bottom: $spacing-md;
+    margin-top: $spacing-xxxl;
+    text-align: left;
+  }
+  
+  &__bottom {
+    position: absolute;
+    bottom: 48px;
+    left: 80px;
+    right: 80px;
+    @include flex-between;
+  }
+  
+  &__text {
+    @include paragraph-small;
+    font-size: 14px;
+    color: $color-gray;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    text-align: left;
+    -webkit-text-stroke: 0.2px;
+    -webkit-text-stroke-color: $color-gray;
+  }
+  
+  &__scroll {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  &__arrow {
+    color: $color-gray;
+    font-size: 20px;
+    -webkit-text-stroke: 0.2px;
+    -webkit-text-stroke-color: $color-gray;
+  }
+  
+  &__cta {
+    @extend .hero__text;
+    padding: 8px 16px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all $transition-normal;
+    text-decoration: none;
+    display: inline-block;
+    
+    &:hover {
+      color: $color-deep-orange;
+      -webkit-text-stroke-color: $color-deep-orange;
+    }
+  }
+  
+  @include mobile {
+    padding: 0 40px;
+    
+    &__title {
+      font-size: 80px;
+      margin-top: 60px;
+    }
+    
+    &__bottom {
+      bottom: 24px;
+      left: 40px;
+      right: 40px;
+      flex-direction: column;
+      gap: $spacing-sm;
+      align-items: flex-start;
+    }
+    
+    &__scroll {
+      align-self: center;
+    }
+  }
+  
+  @include tablet {
+    &__title {
+      font-size: 120px;
+    }
+  }
+}

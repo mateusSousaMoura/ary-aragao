@@ -1,0 +1,223 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// RESET E ESTILOS BASE
+// ========================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  @include smooth-scroll;
+}
+
+body {
+  font-family: $font-secondary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: $bg-primary;
+}
+
+// ========================================
+// ELEMENTOS BASE
+// ========================================
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color $transition-normal;
+}
+
+ul, ol {
+  @include reset-list;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  @include reset-button;
+}
+
+// ========================================
+// KEYFRAMES E ANIMAÇÕES
+// ========================================
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll {
+  0% { 
+    transform: translateX(0%); 
+  }
+  100% { 
+    transform: translateX(-50%); 
+  }
+}
+
+@keyframes marqueeScroll {
+  0% { 
+    transform: translateX(0%); 
+  }
+  100% { 
+    transform: translateX(-100%); 
+  }
+}
+
+// ========================================
+// CLASSES UTILITÁRIAS
+// ========================================
+
+.container {
+  @include container;
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.no-select {
+  @include no-select;
+}
+
+// ========================================
+// TIPOGRAFIA BASE
+// ========================================
+
+h1 {
+  @include heading-primary;
+}
+
+h2 {
+  @include heading-secondary;
+}
+
+h3 {
+  @include heading-tertiary;
+}
+
+h4 {
+  @include heading-quaternary;
+}
+
+p {
+  @include paragraph-large;
+}
+
+.text-small {
+  @include paragraph-small;
+}
+
+// ========================================
+// COMPONENTES BASE
+// ========================================
+
+.button {
+  @include button-style;
+  
+  &--secondary {
+    @include button-style($bg-secondary, $color-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.tag {
+  @include tag-style;
+}
+
+// ========================================
+// SEÇÕES BASE
+// ========================================
+
+.section {
+  @include section;
+}
+
+.section--full-height {
+  height: 100vh;
+}
+
+.section--contact {
+  background-color: $bg-contact;
+  padding: $padding-contact;
+}
+
+// ========================================
+// GRID LAYOUTS
+// ========================================
+
+.grid {
+  display: grid;
+  gap: $grid-gap;
+  
+  &--2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  &--3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &--portfolio {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: $grid-gap-xlarge;
+    padding: 0 60px;
+    justify-items: center;
+    align-items: center;
+    min-height: 70vh;
+  }
+}
+
+// ========================================
+// RESPONSIVE UTILITIES
+// ========================================
+
+@include mobile {
+  .grid--3col,
+  .grid--2col {
+    grid-template-columns: 1fr;
+  }
+  
+  .section {
+    padding: 60px 40px;
+  }
+}
+
+@include tablet {
+  .grid--3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

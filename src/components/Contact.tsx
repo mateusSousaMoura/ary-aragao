@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import React from 'react'
 import { siteConfig } from '../config/site.config'
 // Importar imagens diretamente
 import yPng from '/y.png'
@@ -8,7 +8,7 @@ import { PiLinkedinLogo, PiFacebookLogo } from "react-icons/pi";
 import { HiXMark } from 'react-icons/hi2'
 
 const Contact = () => {
-  const ref = useRef(null)
+  const ref = React.useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start']
@@ -17,100 +17,34 @@ const Contact = () => {
   const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.8])
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
 
-  const containerStyle = {
-    boxSizing: 'border-box',
-    flex: 1,
-    width: '100%',
-    height: 'min-content',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '89px 0px 87px 0px',
-    backgroundColor: siteConfig.colors.background.contact,
-    overflow: 'visible',
-    zIndex: 1,
-    alignContent: 'center',
-    flexWrap: 'nowrap',
-    gap: '38px',
-    position: 'relative',
-    borderRadius: '0px',
-  }
-
-  const contentStyle = {
-    textAlign: 'center',
-    width: '90%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '38px',
-    padding: '30px',
-    position: 'relative',
-    background: `
-      linear-gradient(to right, black 0%, black 30px, transparent 30px, transparent calc(100% - 30px), black calc(100% - 30px), black 100%) top left / 100% 1px no-repeat,
-      linear-gradient(to right, black 0%, black 30px, transparent 30px, transparent calc(100% - 30px), black calc(100% - 30px), black 100%) bottom left / 100% 1px no-repeat,
-      linear-gradient(to bottom, black 0%, black 30px, transparent 30px, transparent calc(100% - 30px), black calc(100% - 30px), black 100%) top left / 1px 100% no-repeat,
-      linear-gradient(to bottom, black 0%, black 30px, transparent 30px, transparent calc(100% - 30px), black calc(100% - 30px), black 100%) top right / 1px 100% no-repeat
-    `,
-  }
-
-  const emailStyle = {
-    ...siteConfig.typography.headings.h3Small,
-    color: siteConfig.colors.mattBlack,
-    marginBottom: '0px',
-    display: 'block',
-    transition: 'transform 0.3s ease',
-  }
-
-  const socialContainerStyle = {
-    display: 'flex',
-    gap: '38px',
-    justifyContent: 'center',
-    marginTop: '0px',
-  }
-
-  const socialLinkStyle = {
-    ...siteConfig.typography.navigation.footerNavDark,
-    display: 'flex',
-    alignItems: 'center',
-    gap: '5px',
-    transition: 'color 0.15s ease',
-    cursor: 'pointer',
-  }
-
   return (
-    <section id="contact" style={containerStyle} ref={ref}>
+    <section id="contact" className="contact" ref={ref}>
       <motion.div
-        style={{ ...contentStyle, scale, opacity }}
+        className="contact__content"
+        style={{ scale, opacity }}
       >
         <img 
           src={yPng} 
           alt="Y Logo" 
-          style={{
-            width: '200px',
-            height: 'auto',
-            marginBottom: '0px',
-            display: 'block',
-            margin: '0 auto'
-          }}
+          className="contact__logo"
         />
 
         <motion.a
           href={`mailto:${siteConfig.personal.email}`}
-          style={emailStyle}
+          className="contact__email"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           {siteConfig.personal.email}
         </motion.a>
 
-        <div style={socialContainerStyle}>
+        <div className="contact__social">
           <motion.a
             href={siteConfig.socialLinks.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            style={socialLinkStyle}
-            whileHover={{ color: siteConfig.colors.creamyWhite }}
+            className="contact__social-link"
+            whileHover={{ color: '#FAF5EA' }}
             whileTap={{ scale: 0.95 }}
           >
             <BsInstagram size={24} />
@@ -120,8 +54,8 @@ const Contact = () => {
             href={siteConfig.socialLinks.facebook}
             target="_blank"
             rel="noopener noreferrer"
-            style={socialLinkStyle}
-            whileHover={{ color: siteConfig.colors.creamyWhite }}
+            className="contact__social-link"
+            whileHover={{ color: '#FAF5EA' }}
             whileTap={{ scale: 0.95 }}
           >
             <PiFacebookLogo size={28} />
@@ -131,8 +65,8 @@ const Contact = () => {
             href={siteConfig.socialLinks.twitter}
             target="_blank"
             rel="noopener noreferrer"
-            style={socialLinkStyle}
-            whileHover={{ color: siteConfig.colors.creamyWhite }}
+            className="contact__social-link"
+            whileHover={{ color: '#FAF5EA' }}
             whileTap={{ scale: 0.95 }}
           >
             <HiXMark size={28} />
@@ -142,8 +76,8 @@ const Contact = () => {
             href={siteConfig.socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            style={socialLinkStyle}
-            whileHover={{ color: siteConfig.colors.creamyWhite }}
+            className="contact__social-link"
+            whileHover={{ color: '#FAF5EA' }}
             whileTap={{ scale: 0.95 }}
           >
             <PiLinkedinLogo size={28} />

@@ -1,0 +1,162 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// PORTFOLIO COMPONENTS
+// ========================================
+
+// Portfolio Title
+.portfolio-title {
+  height: 100vh;
+  @include flex-center;
+  padding: 0;
+  background-color: $bg-primary;
+  position: relative;
+  overflow: hidden;
+  
+  &__heading {
+    color: $color-deep-orange;
+    font-size: $font-size-large;
+    font-weight: 270;
+    line-height: $line-height-normal;
+    letter-spacing: $letter-spacing-normal;
+    position: relative;
+    display: inline-block;
+  }
+  
+  @include mobile {
+    &__heading {
+      font-size: 60px;
+    }
+  }
+  
+  @include tablet {
+    &__heading {
+      font-size: 80px;
+    }
+  }
+}
+
+// Portfolio Projects
+.portfolio-projects {
+  min-height: 100vh;
+  padding: $spacing-xxxl 60px;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  @include flex-center;
+  
+  &__background {
+    position: absolute;
+    top: -200px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.01) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.3) 100%);
+    backdrop-filter: $backdrop-filter-heavy;
+    z-index: $z-index-background;
+  }
+  
+  &__content {
+    position: relative;
+    z-index: $z-index-content;
+    @include container;
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: $grid-gap-xlarge;
+    padding: 0 60px;
+    justify-items: center;
+    align-items: center;
+    min-height: 70vh;
+  }
+}
+
+// Portfolio Item
+.portfolio-item {
+  position: relative;
+  height: 100%;
+  
+  &__border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    @include dashed-border;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity $animation-duration-fast ease, transform $animation-duration-fast ease;
+    
+    .portfolio-item:hover & {
+      opacity: 1;
+      transform: scale(0.7);
+    }
+  }
+  
+  &__content {
+    margin: 20px;
+    height: calc(100% - 40px);
+    @include flex-column;
+    cursor: pointer;
+  }
+  
+  &__image {
+    width: 100%;
+    flex: 1;
+    min-height: 250px;
+    object-fit: cover;
+  }
+  
+  &__info {
+    background: transparent;
+    padding: 28px;
+    @include flex-column;
+    justify-content: center;
+    min-height: 120px;
+  }
+  
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__tag {
+    @include tag-style;
+  }
+  
+  &__title {
+    font-size: 28px;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-normal;
+    color: $color-creamy-white;
+    font-family: $font-primary;
+    margin-bottom: 12px;
+    letter-spacing: $letter-spacing-loose;
+  }
+  
+  &__link {
+    color: $color-creamy-white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: $font-weight-semibold;
+    font-family: $font-primary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    transition: gap $transition-normal;
+    
+    &:hover {
+      gap: 12px;
+    }
+  }
+}

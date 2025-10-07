@@ -1,0 +1,47 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+// ========================================
+// MARQUEE COMPONENT
+// ========================================
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  
+  &__content {
+    @include marquee-text;
+    opacity: $opacity-low;
+    display: inline-block;
+    white-space: nowrap;
+    font-family: $font-primary;
+    font-weight: $font-weight-bold;
+    font-style: italic;
+  }
+  
+  &__text {
+    margin-right: $marquee-spacing;
+  }
+}
+
+// Footer Marquee específico
+.footer-marquee {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: $z-index-background;
+  opacity: $opacity-medium;
+  
+  &__content {
+    @include marquee-text;
+    opacity: $opacity-medium;
+    animation: scroll 20s linear infinite;
+  }
+}
+
+// Simple Footer Marquee
+.simple-footer-marquee {
+  @extend .footer-marquee;
+}

@@ -1,19 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { siteConfig } from '../config/site.config'
+import React from 'react'
 import AnimatedCounter from '../utils/AnimatedCounter'
 
-// Estilos para counter
-const counterNumberStyle = {
-  fontSize: "80px",
-  fontWeight: 600,
-  lineHeight: 1.1,
-  color: siteConfig.colors.creamyWhite,
-  fontFamily: "'Clash Display', sans-serif",
-}
-
 const About = () => {
-  const ref = useRef(null)
+  const ref = React.useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start']
@@ -22,71 +12,12 @@ const About = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
   const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100])
 
-  const containerStyle = {
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '120px 80px',
-    backgroundColor: siteConfig.colors.background.primary,
-  }
-
-  const contentStyle = {
-    maxWidth: '1200px',
-    width: '100%',
-  }
-
-
-  const firstRowStyle = {
-    display: 'grid',
-    gridTemplateColumns: '2fr 1fr',
-    gap: '24px',
-    marginBottom: '24px',
-  }
-
-  const secondRowStyle = {
-    display: 'grid',
-    gridTemplateColumns: '1fr 2fr',
-    gap: '24px',
-  }
-
-  const boxStyle = {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    padding: '32px',
-    borderRadius: '12px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    position: 'relative',
-  }
-
-
-  const boxDescriptionStyle = {
-    ...siteConfig.typography.paragraphs.paragraphS,
-    marginBottom: '16px',
-    fontWeight: 450,
-    fontColor: '#FAF5EA',
-  }
-
-  const separatorStyle = {
-    height: '1px',
-    backgroundColor: '#666666',
-    marginBottom: '8px',
-    color: '#FAF5EA',
-  }
-
-  const counterStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '4px',
-  }
-
-
-  const plusStyle = {
-    fontSize: "128px",
-    fontWeight: 500,
+  // Estilos para counter
+  const counterNumberStyle = {
+    fontSize: "80px",
+    fontWeight: 600,
     lineHeight: 1.1,
-    color: '#FF2E63',
+    color: '#FAF5EA',
     fontFamily: "'Clash Display', sans-serif",
   }
 
@@ -118,79 +49,80 @@ const About = () => {
   ]
 
   return (
-    <section id="about" style={containerStyle} ref={ref}>
+    <section id="about" className="about" ref={ref}>
       <motion.div
-        style={{ ...contentStyle, opacity, y }}
+        className="about__content"
+        style={{ opacity, y }}
       >
         <div>
           {/* Primeira row: 2fr 1fr */}
-          <div style={firstRowStyle}>
-            <div style={boxStyle}>
+          <div className="about__grid--first-row">
+            <div className="about__box">
               <div>
-                <p style={boxDescriptionStyle}>{statsData[0].description}</p>
+                <p className="about__description">{statsData[0].description}</p>
               </div>
-              <div style={separatorStyle}></div>
-              <div style={counterStyle}>
+              <div className="about__separator"></div>
+              <div className="about__counter">
                 <AnimatedCounter 
                   value={parseInt(statsData[0].counter)} 
                   fontStyle={counterNumberStyle}
-                  color={siteConfig.colors.creamyWhite}
+                  color='#FAF5EA'
                   stiffness={300}
                   damping={100}
                 />
-                <span style={plusStyle}>{statsData[0].plus}</span>
+                <span className="about__counter-plus">{statsData[0].plus}</span>
               </div>
             </div>
-            <div style={boxStyle}>
+            <div className="about__box">
               <div>
-                <p style={boxDescriptionStyle}>{statsData[1].description}</p>
+                <p className="about__description">{statsData[1].description}</p>
               </div>
-              <div style={separatorStyle}></div>
-              <div style={counterStyle}>
+              <div className="about__separator"></div>
+              <div className="about__counter">
                 <AnimatedCounter 
                   value={parseInt(statsData[1].counter)} 
                   fontStyle={counterNumberStyle}
-                  color={siteConfig.colors.creamyWhite}
+                  color='#FAF5EA'
                   stiffness={300}
                   damping={100}
                 />
-                <span style={plusStyle}>{statsData[1].plus}</span>
+                <span className="about__counter-plus">{statsData[1].plus}</span>
               </div>
             </div>
           </div>
           
           {/* Segunda row: 1fr 2fr */}
-          <div style={secondRowStyle}>
-            <div style={boxStyle}>
+          <div className="about__grid--second-row">
+            <div className="about__box">
               <div>
-                <p style={boxDescriptionStyle}>{statsData[2].description}</p>
+                <p className="about__description">{statsData[2].description}</p>
               </div>
-              <div style={separatorStyle}></div>
-              <div style={counterStyle}>
+              <div className="about__separator"></div>
+              <div className="about__counter">
                 <AnimatedCounter 
                   value={parseInt(statsData[2].counter)} 
                   fontStyle={counterNumberStyle}
-                  color={siteConfig.colors.creamyWhite}
+                  color='#FAF5EA'
                   stiffness={300}
                   damping={100}
                 />
-                <span style={plusStyle}>{statsData[2].plus}</span>
+                <span className="about__counter-plus">{statsData[2].plus}</span>
               </div>
             </div>
-            <div style={boxStyle}>
+            <div className="about__box">
               <div>
-                <p style={boxDescriptionStyle}>{statsData[3].description}</p>
+                <p className="about__description">{statsData[3].description}</p>
               </div>
-              <div style={separatorStyle}></div>
-              <div style={counterStyle}>
+              <div className="about__separator"></div>
+              <div className="about__counter">
                 <AnimatedCounter 
                   value={parseInt(statsData[3].counter)} 
                   fontStyle={counterNumberStyle}
-                  color={siteConfig.colors.creamyWhite}
+                  color='#FAF5EA'
                   stiffness={300}
                   damping={100}
                 />
-                <span style={plusStyle}>{statsData[3].plus}</span>
+                <span className="about__counter-plus">{statsData[3].plus}</span>
               </div>
             </div>
           </div>
