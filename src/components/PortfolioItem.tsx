@@ -20,74 +20,56 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({
   }
 
   return (
-    <div className="portfolio-item" style={containerStyle}>
-      {/* Borda externa com animação de dentro para fora */}
-      <motion.div
-        className="portfolio-item__border"
-        initial={{
-          scale: 0.6,
-          opacity: 0,
-        }}
-        animate={{
-          scale: isHovered ? 1 : 0.7,
-          opacity: isHovered ? 1 : 0,
-        }}
-        transition={{ 
-          duration: 0.8,
-          ease: [0.25, 0.46, 0.45, 0.94]
-        }}
+    <div
+      className="portfolio-item"
+      style={containerStyle}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Borda externa, agora como irmã do conteúdo */}
+      <div
+        className={`portfolio-item__border${isHovered ? ' is-hovered' : ''}`}
       />
-      
-      {/* Conteúdo com margin */}
-      <div 
+      {/* Conteúdo sem margin para não empurrar a borda */}
+      <div
         className="portfolio-item__content"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => onProjectClick?.({
-          id,
-          title,
-          tags,
-          image,
-          link,
-          gridArea,
-          rotation,
-          type: 'featured'
-        })}
+        onClick={() =>
+          onProjectClick?.({
+            id,
+            title,
+            tags,
+            image,
+            link,
+            gridArea,
+            rotation,
+            type: 'featured',
+          })
+        }
       >
-        {/* Seção da imagem */}
         <img
           src={image}
           alt={title}
           className="portfolio-item__image"
         />
-        
-        {/* Seção de informações */}
         <div className="portfolio-item__info">
           <div className="portfolio-item__tags">
             {tags.map((tag, tagIdx) => (
-              <span 
-                key={`${id}-tag-${tag}-${tagIdx}`} 
+              <span
+                key={`${id}-tag-${tag}-${tagIdx}`}
                 className="portfolio-item__tag"
               >
                 {tag}
               </span>
             ))}
           </div>
-          
-          <h3 className="portfolio-item__title">
-            {title}
-          </h3>
-          
-          <a 
-            href={link} 
-            className="portfolio-item__link"
-          >
+          <h3 className="portfolio-item__title">{title}</h3>
+          <a href={link} className="portfolio-item__link">
             View Project →
           </a>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default PortfolioItem

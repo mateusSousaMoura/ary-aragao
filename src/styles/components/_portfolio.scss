@@ -82,30 +82,34 @@
 .portfolio-item {
   position: relative;
   height: 100%;
+  overflow: visible;
   
   &__border {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    @include dashed-border;
-    pointer-events: none;
-    opacity: 0;
-    transform: scale(0.6);
-    transition: opacity $animation-duration-fast ease, transform $animation-duration-fast ease;
-    
-    .portfolio-item:hover & {
-      opacity: 1;
-      transform: scale(0.7);
-    }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  @include dashed-border;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity $animation-duration-fast ease, transform $animation-duration-fast ease;
+
+  &.is-hovered {
+    opacity: 1;
+    transform: scale(1.1);
+  }
   }
   
   &__content {
-    margin: 20px;
-    height: calc(100% - 40px);
-    @include flex-column;
-    cursor: pointer;
+  /* Remover margin para não empurrar a borda */
+  height: 100%;
+  @include flex-column;
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
   }
   
   &__image {

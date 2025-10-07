@@ -16,4 +16,8 @@ declare module 'react' {
     pointerEvents?: 'auto' | 'none' | 'initial' | 'inherit';
     objectFit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down' | 'initial' | 'inherit';
   }
+
+  export function useRef(arg0: null) {
+    throw new Error('Function not implemented.');
+  }
 }

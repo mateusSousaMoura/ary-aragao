@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import React from 'react'
 
 const PortfolioTitle = () => {
-  const ref = React.useRef(null)
+  const ref = React.useRef<HTMLElement | null>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start']
