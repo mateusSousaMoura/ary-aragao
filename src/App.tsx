@@ -6,12 +6,11 @@ import Brands from './components/Brands'
 import Portfolio from './components/Portfolio'
 import Contact from './components/Contact'
 import WorkingFooter from './components/WorkingFooter'
-import CameraFrame from './components/CameraFrame'
+
 
 const App: React.FC = () => {
   return (
     <div style={{ backgroundColor: siteConfig.colors.background.primary }}>
-      <CameraFrame />
       <Navbar />
       <Hero />
       <About />

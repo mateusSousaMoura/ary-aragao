@@ -88,10 +88,7 @@ export interface BrandsProps {
   }>;
 }
 
-export interface CameraFrameProps {
-  children: React.ReactNode;
-  className?: string;
-}
+
 
 export interface PortfolioProps {
   title?: string;
